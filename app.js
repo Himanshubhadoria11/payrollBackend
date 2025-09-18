@@ -17,7 +17,14 @@ app.use(fileUpload({useTempFiles: true}));
 
 
 const cors= require('cors')
-app.use(cors())
+// app.use(cors())
+
+app.use(cors({
+  origin: process.env.FRONTEND_URL, // e.g. https://payrollfrontend.onrender.com
+  credentials: true
+}));
+
+
 
 
 
