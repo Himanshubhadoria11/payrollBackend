@@ -21,7 +21,8 @@ const cors= require('cors')
 
 app.use(cors({
   origin: process.env.FRONTEND_URL, // e.g. https://payrollfrontend.onrender.com
-  credentials: true
+  methods: ["GET", "POST", "PUT", "PATCH", "DELETE"], // <-- allow these HTTP methods
+  credentials: true, // allow cookies
 }));
 
 
