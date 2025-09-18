@@ -25,7 +25,10 @@ app.use(cors({
   credentials: true, // allow cookies
 }));
 
-
+app.options('*', cors({
+  origin: process.env.FRONTEND_URL || 'https://payrollfrontend.onrender.com',
+  credentials: true
+}));
 
 
 
