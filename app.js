@@ -19,16 +19,18 @@ app.use(fileUpload({useTempFiles: true}));
 const cors= require('cors')
 // app.use(cors())
 
-app.use(cors({
-  origin: process.env.FRONTEND_URL||'https://payrollfrontend.onrender.com', // e.g. https://payrollfrontend.onrender.com
-  methods: ["GET", "POST", "PUT", "PATCH", "DELETE"], // <-- allow these HTTP methods
-  credentials: true, // allow cookies
-}));
+const allowedOrigin = process.env.FRONTEND_URL || 'https://payrollfrontend.onrender.com';
 
-app.options('*', cors({
-  origin: process.env.FRONTEND_URL || 'https://payrollfrontend.onrender.com',
-  credentials: true
-}));
+app.use(
+  cors({
+    origin: allowedOrigin,
+    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+    credentials: true,
+  })
+);
+
+// Important: Handle preflight OPTIONS properly
+app.options('*', cors({ origin: allowedOrigin, credentials: true }));
 
 
 
