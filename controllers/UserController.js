@@ -86,7 +86,7 @@ class UserController {
             //res.redirect('/home')
             //multiple login
             if (user.role == role) {
-              const token = jwt.sign({ ID: user._id }, "pninfosys123dhdjh");
+              const token = jwt.sign({ ID: user._id }, process.env.JWT_SECRET);
               // console.log(token)
               res.cookie("token", token);
               res
