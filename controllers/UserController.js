@@ -39,7 +39,7 @@ class UserController {
 
             const token = jwt.sign(
               { userId: result._id, email: result.email },
-              "pninfosys123dhdjh"
+              process.env.JWT_SECRET
             );
             //console.log(token)
             res.status(201).cookie("token", token).json({

@@ -19,19 +19,27 @@ app.use(fileUpload({useTempFiles: true}));
 const cors= require('cors')
 // app.use(cors())
 
-const allowedOrigin = process.env.FRONTEND_URL || 'https://payrollfrontend.onrender.com';
+// const allowedOrigin = process.env.FRONTEND_URL || 'https://payrollfrontend.onrender.com'||'http://localhost:5173';
 
-app.use(
-  cors({
-    origin: allowedOrigin,
-    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
-    credentials: true,
-  })
-);
+// app.use(
+//   cors({
+//     origin: allowedOrigin,
+//     methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+//     credentials: true,
+//   })
+// );
 
-// Important: Handle preflight OPTIONS properly
-app.options('*', cors({ origin: allowedOrigin, credentials: true }));
+// // Important: Handle preflight OPTIONS properly
+// app.options('*', cors({ origin: allowedOrigin, credentials: true }));
+const allowedOrigins = [
+  "http://localhost:5173",              // local React dev
+  "https://payrollfrontend.onrender.com" // live frontend
+];
 
+app.use(cors({
+  origin: allowedOrigins,
+  credentials: true
+}));
 
 
 

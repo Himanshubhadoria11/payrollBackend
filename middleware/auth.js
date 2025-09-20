@@ -9,7 +9,7 @@ const checkUserAuth = async (req, res, next) => {
   if (!token) {
     res.status(401).json({ status: "failed", message: "UnauthorizedLogined" });
   } else {
-    const data = jwt.verify(token, "pninfosys123dhdjh");
+    const data = jwt.verify(token, process.env.JWT_SECRET);
     // console.log(verifyLogin)
     const userdata = await UserModel.findOne({ _id: data.ID });
     //console.log(userData)
