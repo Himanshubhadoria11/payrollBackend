@@ -27,19 +27,7 @@ route.post('/updateJob/:id',checkUserAuth,JobController.updateJob)
 route.get('/deleteJob/:id',checkUserAuth,JobController.deleteJob)
 route.get('/getSingleJob/:id',JobController.getSingleJob)
 
-//Application Model
-route.post('/post',checkUserAuth,ApplicationController.postApplication)
-route.get('/employer/getall',checkUserAuth,ApplicationController.employerGetAllApplications)
-route.get('/jobseeker/getall',checkUserAuth,ApplicationController.jobseekerGetAllApplications)
-route.delete('/delete/:id',checkUserAuth,ApplicationController.jobseekerDeleteApplication);
 
-//CategoryController
-route.post('/categoryInsert',checkUserAuth,CategoryController.Category_insert)
-route.get('/displayCategory',CategoryController.DisplayCategory)
-route.get('/viewCategory',checkUserAuth,CategoryController.ViewCategory)
-route.post('/editCategory/:id',checkUserAuth,CategoryController.EditCategory)
-route.get('/deleteCategory/:id',checkUserAuth,CategoryController.deleteCategory)
-route.get("/categorylist/:cname", checkUserAuth, CategoryController.CategoryList)
 
 
 

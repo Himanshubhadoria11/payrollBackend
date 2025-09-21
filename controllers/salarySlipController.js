@@ -1,72 +1,3 @@
-// import SalarySlip from "../models/SalarySlip.js";
-
-// // Get all salary slips
-// export const getSalarySlips = async (req, res) => {
-//   try {
-//     const slips = await SalarySlip.find();
-//     res.json(slips);
-//   } catch (err) {
-//     res.status(500).json({ error: err.message });
-//   }
-// };
-
-// // Create new salary slip
-// export const createSalarySlip = async (req, res) => {
-//   try {
-//     const { employeeId, month, basicPay, allowances, deductions } = req.body;
-
-//     const netSalary = Number(basicPay) + (Number(allowances) || 0) - (Number(deductions) || 0);
-
-//     const slip = new SalarySlip({
-//       employeeId,
-//       month,
-//       basicPay,
-//       allowances,
-//       deductions,
-//       netSalary,
-//     });
-
-//     await slip.save();
-//     res.status(201).json(slip);
-//   } catch (err) {
-//     res.status(400).json({ error: err.message });
-//   }
-// };
-
-// // Update salary slip
-// export const updateSalarySlip = async (req, res) => {
-//   try {
-//     const { basicPay, allowances, deductions } = req.body;
-
-//     // recalc net salary
-//     const netSalary = Number(basicPay) + (Number(allowances) || 0) - (Number(deductions) || 0);
-
-//     const updatedSlip = await SalarySlip.findByIdAndUpdate(
-//       req.params.id,
-//       { ...req.body, netSalary },
-//       { new: true }
-//     );
-
-//     if (!updatedSlip) return res.status(404).json({ error: "Slip not found" });
-
-//     res.json(updatedSlip);
-//   } catch (err) {
-//     res.status(400).json({ error: err.message });
-//   }
-// };
-
-// // Delete salary slip
-// export const deleteSalarySlip = async (req, res) => {
-//   try {
-//     const deleted = await SalarySlip.findByIdAndDelete(req.params.id);
-//     if (!deleted) return res.status(404).json({ error: "Slip not found" });
-//     res.json({ message: "Salary slip deleted" });
-//   } catch (err) {
-//     res.status(400).json({ error: err.message });
-//   }
-// };
-
-
 
 
 const SalarySlip = require("../models/SalarySlip");
@@ -129,26 +60,6 @@ const updateSalarySlip = async (req, res) => {
   }
 };
 
-// const updateSalarySlip = async (req, res) => {
-//   try {
-//     const { basicPay, allowances, deductions } = req.body;
-
-//     const netSalary =
-//       Number(basicPay) + (Number(allowances) || 0) - (Number(deductions) || 0);
-
-//     const updatedSlip = await SalarySlip.findByIdAndUpdate(
-//       req.params.id,
-//       { ...req.body, netSalary },
-//       { new: true }
-//     );
-
-//     if (!updatedSlip) return res.status(404).json({ error: "Slip not found" });
-
-//     res.json(updatedSlip);
-//   } catch (err) {
-//     res.status(400).json({ error: err.message });
-//   }
-// };
 
 // Delete salary slip
 const deleteSalarySlip = async (req, res) => {

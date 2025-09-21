@@ -79,12 +79,7 @@ class UserController {
         if (user != null) {
           const isMatched = await bcrypt.compare(password, user.password);
           if (isMatched) {
-            //token
-            //const token = jwt.sign({ ID:user._id }, 'pninfosys123dhdjh');
-            // console.log(token)
-            //res.cookie('token',token)
-            //res.redirect('/home')
-            //multiple login
+            
             if (user.role == role) {
               const token = jwt.sign({ ID: user._id }, process.env.JWT_SECRET);
               // console.log(token)
@@ -172,63 +167,41 @@ static changePassword = async (req, res) => {
   }
 };
 
-// static updateProfile = async (req, res) => {
+
+
+// static updateProfile= async (req, res) => {
 //   try {
-//       const { id } = req.Udata;
-//       const { name, email } = req.body;
-//       if (req.files) {
-//           const user = await UserModel.findById(id);
-//           const imageID = user.image.public_id;
-//           console.log(imageID);
-
-//           //deleting image from Cloudinary
-//           await cloudinary.uploader.destroy(imageID);
-//           //new image update
-//           const imagefile = req.files.image;
-//           const imageupload = await cloudinary.uploader.upload(
-//               imagefile.tempFilePath,
-//               {
-//                   folder: "userprofile",
-//               }
-//           );
-//           var data = {
-//               name: name,
-//               email: email,
-//               image: {
-//                   public_id: imageupload.public_id,
-//                   url: imageupload.secure_url,
-//               },
-//           };
-//       } else {
-//           var data = {
-//               name: name,
-//               email: email,
-//           };
-//       }
-//       await UserModel.findByIdAndUpdate(id, data);
-//       req.flash("success", "Update Profile successfully");
-//       res.redirect("/profile");
-//   } catch (error) {
-//       console.log(error);
-//   }
-// };
-
-static updateProfile= async (req, res) => {
-  try {
-      const { name, email } = req.body
-      const data = await UserModel.findByIdAndUpdate(req.params.id, {
-          name: name,
-          email: email
+//       const { name, email } = req.body
+//       const data = await UserModel.findByIdAndUpdate(req.params.id, {
+//           name: name,
+//           email: email
          
-      })
-      res.status(200).json(data)
+//       })
+//       res.status(200).json(data)
 
-  } catch (error) {
-      console.log(error)
-      res.status(500).json({error:error});
+//   } catch (error) {
+//       console.log(error)
+//       res.status(500).json({error:error});
   
+//   }
+// }
+static updateProfile = async (req, res) => {
+  try {
+    const { name, email } = req.body;
+    const userId = req.params.id;
+
+    if (!userId) {
+      return res.status(400).json({ error: "User ID is missing in request parameters" });
+    }
+
+    const data = await UserModel.findByIdAndUpdate(userId, { name, email });
+    res.status(200).json({ message: "Profile updated successfully", data });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: error.message || "Internal Server Error" });
   }
-}
+};
+
 
   static logout = async (req, res) => {
     try {
