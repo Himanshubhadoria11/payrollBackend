@@ -24,7 +24,7 @@ const checkUserAuth = async (req, res, next) => {
 
 
 
-// module.exports = checkUserAuth;
+module.exports = checkUserAuth;
 
 // const jwt = require("jsonwebtoken");
 // const UserModel = require("../models/user");
