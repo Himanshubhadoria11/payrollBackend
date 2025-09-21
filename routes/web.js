@@ -3,8 +3,6 @@ const UserController =require('../controllers/UserController')
 const route = express.Router()
 const checkUserAuth=require('../middleware/auth')
 const JobController = require('../controllers/JobController')
-const ApplicationController = require('../controllers/ApplicationController')
-const CategoryController = require('../controllers/CategoryController')
 const SalarySlipController = require('../controllers/salarySlipController') 
 const ExpenseController = require('../controllers/ExpenseController') 
 

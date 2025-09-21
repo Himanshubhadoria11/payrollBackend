@@ -1,10 +1,11 @@
 
 const Expense = require("../models/Expense");
 
-// Add new expense
+// Add new expenses
 exports.addExpense = async (req, res) => {
   try {
     const { month, description, amount } = req.body;
+
 
     const expense = await Expense.create({
       employeeId: req.userdata._id, // use logged-in user ID

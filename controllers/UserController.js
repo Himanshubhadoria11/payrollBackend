@@ -187,8 +187,8 @@ static changePassword = async (req, res) => {
 // }
 static updateProfile = async (req, res) => {
   try {
-    const { name, email } = req.body;
-    const userId = req.params.id;
+    const { name, email} = req.body;
+    const userId= req.params.id;
 
     if (!userId) {
       return res.status(400).json({ error: "User ID is missing in request parameters" });
@@ -198,7 +198,7 @@ static updateProfile = async (req, res) => {
     res.status(200).json({ message: "Profile updated successfully", data });
   } catch (error) {
     console.log(error);
-    res.status(500).json({ error: error.message || "Internal Server Error" });
+    res.status(500).json({ error: error.message || "Internal Server Error Occured" });
   }
 };
 
